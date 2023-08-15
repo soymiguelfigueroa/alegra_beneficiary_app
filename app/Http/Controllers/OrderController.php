@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,7 @@ class OrderController extends Controller
 
     public function getOrders()
     {
-        $orders = Order::all();
+        $orders = OrderResource::collection(Order::all());
 
         return $orders;
     }

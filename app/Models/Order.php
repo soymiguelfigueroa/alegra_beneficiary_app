@@ -17,6 +17,11 @@ class Order extends Model
         'state_id',
     ];
 
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function state(): BelongsTo
     {
         return $this->belongsTo(State::class);
