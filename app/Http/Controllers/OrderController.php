@@ -13,7 +13,7 @@ class OrderController extends Controller
 
         return view('order.index', compact('orders'));
     }
-    
+
     public function create()
     {
         return view('order.create');
@@ -34,5 +34,12 @@ class OrderController extends Controller
             return redirect()->route('order.index')->with('success', __('Order created'));
         else
             return redirect()->route('order.index')->with('error', __('There was and error trying to create the order'));
+    }
+
+    public function getOrders()
+    {
+        $orders = Order::all();
+
+        return $orders;
     }
 }
