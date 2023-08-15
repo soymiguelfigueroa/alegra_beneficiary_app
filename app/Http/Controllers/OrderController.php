@@ -43,4 +43,37 @@ class OrderController extends Controller
 
         return $orders;
     }
+
+    public function getOrdersCreated()
+    {
+        $orders = OrderResource::collection(Order::where('state_id', 1)->get());
+
+        return $orders;
+    }
+
+    public function getOrdersPending()
+    {
+        $orders = OrderResource::collection(Order::where('state_id', 2)->get());
+
+        return $orders;
+    }
+
+    public function getOrdersDelivered()
+    {
+        $orders = OrderResource::collection(Order::where('state_id', 3)->get());
+
+        return $orders;
+    }
+
+    public function updateState(Request $request)
+    {
+        $order_id = $request->order_id;
+        $state_id = $request->state_id;
+
+        $order = Order::where('id', $order_id)->first();
+        $order->state_id = $state_id;
+        $order->save();
+
+        return response('Order updated', 200);
+    }
 }
