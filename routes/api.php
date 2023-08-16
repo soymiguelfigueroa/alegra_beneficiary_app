@@ -20,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/orders', [OrderController::class, 'getOrders']);
+Route::get('/orders/find', [OrderController::class, 'getOrder']);
 Route::get('/orders/created', [OrderController::class, 'getOrdersCreated']);
 Route::get('/orders/pending', [OrderController::class, 'getOrdersPending']);
 Route::get('/orders/delivered', [OrderController::class, 'getOrdersDelivered']);

@@ -44,6 +44,11 @@ class OrderController extends Controller
         return $orders;
     }
 
+    public function getOrder(Request $request)
+    {
+        return Order::find($request->id);
+    }
+
     public function getOrdersCreated()
     {
         $orders = OrderResource::collection(Order::where('state_id', 1)->get());
