@@ -39,29 +39,26 @@
                 </div>
 
                 <h1 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white text-center">
-                    {{ __('Free lunch session!') }}
+                    {{ __('Receipt: ') . $receipt['name'] }}
                 </h1>
 
-                <p class="mt-6 font-semibold text-gray-900 dark:text-white text-center">
-                    {{ __('Welcome! You can register and make a request. One of these recipes will be randomly selected and prepared for you. You can click and see more details about each recipe.')  }}
-                </p>
-
                 <div class="mt-16">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                        @foreach($receipts as $receipt)
-                            <a href="{{ route('welcome.receipt', ['receipt_id' => $receipt['id']]) }}" class="scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
-                                <div>
-                                    <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ $receipt['name'] }}</h2>
-                                </div>
-
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" class="self-center shrink-0 stroke-red-500 w-6 h-6 mx-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12h15m0 0l-6.75-6.75M19.5 12l-6.75 6.75" />
-                                </svg>
-                            </a>
-                        @endforeach
+                    <div class="grid scale-100 p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none flex motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500" style="grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center;">
+                        <img src="{{ asset('img/meal.png') }}" style="width: 100px;" />
+                        <ul>
+                            @foreach($ingredients as $ingredient)
+                                <li class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">{{ sprintf(__("%s (%s Units)"), $ingredient['name'], $ingredient['quantity']) }}</li>
+                            @endforeach
+                        </ul>
                     </div>
                 </div>
+
+                <a href="{{ route('welcome.index') }}"
+                    class="mt-6 font-semibold text-gray-900 dark:text-white text-center" style="display: block;">
+                    {{ __('<< Back to list') }}
+                </a>
             </div>
+
         </div>
     </body>
 </html>
